@@ -1,83 +1,55 @@
-import React, { useMemo, useState } from 'react'
-import { Layout, Menu, Breadcrumb, theme } from 'antd'
-import {
-  DashboardOutlined,
-  TeamOutlined,
-} from '@ant-design/icons'
-import Dashboard from './pages/Dashboard.jsx'
-import Patients from './pages/Patients.jsx'
+import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import Patients from './pages/Patients.jsx';
+import Dashboard from './pages/Dashboard.jsx';
+import { Layout } from 'antd';
+import 'antd/dist/reset.css';
 
-const { Header, Content, Sider, Footer } = Layout
+const { Header, Content, Footer } = Layout;
 
-const App = () => {
-  const [selectedKey, setSelectedKey] = useState('dashboard')
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken()
-
-  const content = useMemo(() => {
-    switch (selectedKey) {
-      case 'dashboard':
-        return <Dashboard />
-      case 'patients':
-        return <Patients />
-      default:
-        return <Dashboard />
-    }
-  }, [selectedKey])
+function App() {
+  const location = useLocation();
+  const isHome = location.pathname === import.meta.env.BASE_URL;
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Header style={{ display: 'flex', alignItems: 'center' }}>
-        <div style={{
-          color: '#fff',
-          fontWeight: 600,
-          fontSize: 18,
-          letterSpacing: 0.5,
-        }}>
-          My Doctor App
-        </div>
+      <Header style={{
+        padding: 0,
+        background: isHome ? '#fff' : '#fff',
+        boxShadow: '0 2px 8px #f0f1f2'
+      }}>
+        {isHome ? (
+          <img
+            src={`${import.meta.env.BASE_URL}1762354157540.jpg`}
+            alt="网站抬头"
+            style={{ width: '100%', height: 'auto', display: 'block' }}
+          />
+        ) : (
+          <div style={{ height: 0 }} />
+        )}
       </Header>
-
-      <Layout>
-        <Sider width={220} theme="light">
-          <Menu
-            mode="inline"
-            selectedKeys={[selectedKey]}
-            onClick={(e) => setSelectedKey(e.key)}
-            style={{ height: '100%', borderRight: 0 }}
-            items={[
-              { key: 'dashboard', icon: <DashboardOutlined />, label: '概览仪表盘' },
-              { key: 'patients',  icon: <TeamOutlined />,       label: '患者管理' },
-            ]}
-          />
-        </Sider>
-
-        <Layout style={{ padding: '0 24px 24px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}
-            items={[
-              { title: 'Home' },
-              { title: selectedKey === 'dashboard' ? 'Dashboard' : 'Patients' },
-            ]}
-          />
-          <Content
-            style={{
-              padding: 24,
-              margin: 0,
-              minHeight: 280,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
-            }}
-          >
-            {content}
-          </Content>
-          <Footer style={{ textAlign: 'center' }}>
-            Ant Design ©{new Date().getFullYear()} Created by You
-          </Footer>
-        </Layout>
-      </Layout>
+      <Content style={{ padding: '24px 50px', minHeight: 280 }}>
+        <div style={{
+          marginTop: -72,         // 再上移
+          marginBottom: 16,
+          marginLeft: 120,        // 再右移
+          position: 'relative',
+          zIndex: 2,
+          fontSize: 22,
+          fontWeight: 700
+        }}>
+          <Link to="/" style={{ marginRight: 28 }}>首页</Link>
+          <Link to="/dashboard" style={{ marginRight: 28 }}>就诊记录</Link>
+          <Link to="/patients">患者信息</Link>
+        </div>
+        <Routes>
+          <Route path="/" element={<div style={{ textAlign: 'center', color: '#446', fontSize: '1.2rem' }}>欢迎来到邢医生耳鼻喉科网页！</div>} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/patients" element={<Patients />} />
+        </Routes>
+      </Content>
+      <Footer style={{ textAlign: 'center' }}>©2025 邢氏耳鼻喉科</Footer>
     </Layout>
-  )
+  );
 }
 
-export default App
+export default App;
