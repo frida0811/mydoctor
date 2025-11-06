@@ -27,13 +27,13 @@ function App() {
             />
             <div style={{
               position: 'absolute',
-              top: '90%',
-              left: '10%',
+              top: '80%',
+              left: '20%',
               transform: 'translate(-50%, -50%)',
               color: '#fff',
               fontSize: '32px',
               fontWeight: 'bold',
-              textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
+              textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
               whiteSpace: 'nowrap'
             }}>
               新安集邢氏耳鼻喉科
