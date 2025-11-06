@@ -1,0 +1,5 @@
+name = "mydoctor"
+compatibility_date = "2024-11-06"
+
+[node]
+version = "20"
