@@ -15,14 +15,30 @@ function App() {
       <Header style={{
         padding: 0,
         background: isHome ? '#fff' : '#fff',
-        boxShadow: '0 2px 8px #f0f1f2'
+        boxShadow: '0 2px 8px #f0f1f2',
+        position: 'relative'
       }}>
         {isHome ? (
-          <img
-            src={`${import.meta.env.BASE_URL}1762354157540.jpg`}
-            alt="网站抬头"
-            style={{ width: '100%', height: 'auto', display: 'block' }}
-          />
+          <div style={{ position: 'relative', width: '100%' }}>
+            <img
+              src={`${import.meta.env.BASE_URL}1762354157540.jpg`}
+              alt="网站抬头"
+              style={{ width: '100%', height: 'auto', display: 'block' }}
+            />
+            <div style={{
+              position: 'absolute',
+              top: '90%',
+              left: '10%',
+              transform: 'translate(-50%, -50%)',
+              color: '#fff',
+              fontSize: '32px',
+              fontWeight: 'bold',
+              textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
+              whiteSpace: 'nowrap'
+            }}>
+              新安集邢氏耳鼻喉科
+            </div>
+          </div>
         ) : (
           <div style={{ height: 0 }} />
         )}
