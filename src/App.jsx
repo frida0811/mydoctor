@@ -30,7 +30,7 @@ function App() {
               top: '80%',
               left: '20%',
               transform: 'translate(-50%, -50%)',
-              color: '#fff',
+              color: '#000',
               fontSize: '32px',
               fontWeight: 'bold',
               textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
